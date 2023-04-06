@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from .common import config
+
 def main():
-    # Your code here...
-    print("Hello World")
-    return "Hello World"
+    return 0
