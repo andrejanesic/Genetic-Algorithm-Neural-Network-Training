@@ -8,8 +8,8 @@ __config = None
 
 def config() -> configparser.ConfigParser:
     """
-    Returns the program configuration, or loads the configuration if not done
-    yet and then returns.
+    Returns the program configuration, or loads the configuration if not loaded
+    yet and returns.
     """
     global __config
 
@@ -21,14 +21,20 @@ def config() -> configparser.ConfigParser:
 
     # TODO document this
     __config["DEFAULT"] = {
-        "pop_size": 20,
-        "mating_rate": 80,
-        "mutat_rate": 20,
+        "pop_size": 10,
+        "co_rate": 80,
+        "mut_rate": 20,
         "sel_rate": 20,
-        "random_seed": random.randint(0, 1_000_000_000),
+        "sol_lb": -3,
+        "sol_ub": 3,
+        "indiv_l": 33,
+        "max_iter": 150,
+        "random_seed": 123_123_123,
     }
 
     if not __config.has_section("app"):
         __config.add_section("app")
+    
+    random.seed(__config.getint("app", "random_seed"))
 
-    return __config["app"]
+    return __config
