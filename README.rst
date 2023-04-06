@@ -22,5 +22,6 @@ The following Make commands are available. Use ``make (command)`` syntax on Linu
 Authors
 -------
 
-office@andrejanesic.com
-https://github.com/andrejanesic/Genetic-Algorithm-Neural-Network-Training
+.. image:: https://andrejanesic.com/git-signature-sm.png
+  :width: 359
+  :alt: Andreja Nesic
