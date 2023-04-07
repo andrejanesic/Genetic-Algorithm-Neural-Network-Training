@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
+from typing import List
 import argparse
 
 __args = None
@@ -11,16 +12,16 @@ class Args:
     """
 
     def __init__(self) -> None:
-        self.__config_src = None
+        self.__configs = None
         self.__cost_exe = None
         pass
 
-    def set_config_src(self, config_src: str) -> Args:
-        self.__config_src = config_src
+    def set_configs(self, configs: List[str]) -> Args:
+        self.__configs = configs
         return self
 
-    def get_config_src(self) -> str:
-        return self.__config_src
+    def get_configs(self) -> List[str]:
+        return self.__configs
 
     def set_cost_exe(self, cost_exe: str) -> Args:
         self.__cost_exe = cost_exe
@@ -48,11 +49,11 @@ def args() -> Args:
     parser.add_argument(
         "-c",
         "--config",
-        action="store",
-        nargs=1,
+        action="append",
+        nargs='+',
         required=False,
-        default="config.ini",
-        dest="config_src",
+        default=["config.ini"],
+        dest="configs",
     )
     
     parser.add_argument(
@@ -68,6 +69,6 @@ def args() -> Args:
     parsed = parser.parse_args()
 
     __args = Args() \
-        .set_config_src(parsed.config_src) \
+        .set_configs(parsed.configs) \
         .set_cost_exe(parsed.cost_exe)
     return __args
