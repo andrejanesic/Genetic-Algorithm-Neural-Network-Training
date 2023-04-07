@@ -14,7 +14,7 @@ def main() -> None:
     lb = config().getint("algo", "sol_lb")
     ub = config().getint("algo", "sol_ub")
     sel_perc = config().getint("algo", "sel_perc") / 100
-    mut_perc = config().getint("algo", "mut_perc")
+    mut_perc = config().getint("algo", "mut_perc") / 100
     max_iter = config().getint("algo", "max_iter")
     mut_n = config().getint("algo", "mut_n")
     out_file = config().get("algo", "out_file")

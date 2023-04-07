@@ -14,10 +14,11 @@ def evolve(pop: pd.DataFrame, p: float, mut_perc: int, lb: int, ub: int, mut_cou
     population. The cost is calculated for each new/modified individual.
     """
     n = len(pop)
-    selected = select(pop, p)
-    pairs = pair(selected, n - len(selected))
-    breeded = breed(pairs, selected)
+    candidates = select(pop, int(p * n))
+    pairs = pair(candidates, n)
+    breeded = breed(pairs, pop)
     mutated = mutate(breeded, mut_perc, lb, ub, mut_count)
     next_gen = cost_iter(mutated)
+    next_gen = select(next_gen, n)
     assert(len(next_gen) == n)
     return next_gen

@@ -13,7 +13,7 @@ def mutate(pop: pd.DataFrame, mut_perc: int, lb: int, ub: int, mut_count: int) -
     pop.sort_values(by=["Cost"], ascending=True, inplace=True)
     pop.reset_index(drop=True, inplace=True)
     genes = len(pop.head(1))
-    for i in range(int(len(pop) * (1 - mut_perc / 100)), len(pop)):
+    for i in range(int(len(pop) * (1 - mut_perc)), len(pop)):
         for _ in range(mut_count):
             val = random.uniform(lb, ub)
             gen = random.choice(range(genes))

@@ -22,8 +22,8 @@ def config() -> configparser.ConfigParser:
     # TODO document this
     __config["DEFAULT"] = {
         "pop_size": 30,
-        "sol_lb": -10,
-        "sol_ub": 10,
+        "sol_lb": -6,
+        "sol_ub": 6,
         "sel_perc": 40,
         "mut_perc": 10,
         "mut_n": 1,
