@@ -8,7 +8,7 @@ from .mutate import *
 from .cost import *
 
 
-def evolve(pop: pd.DataFrame, p: float, elites: int, lb: int, ub: int, mut_count: int) -> pd.DataFrame:
+def evolve(pop: pd.DataFrame, p: float, mut_perc: int, lb: int, ub: int, mut_count: int) -> pd.DataFrame:
     """
     Evolves the population, creating a new generation and inserting into the
     population. The cost is calculated for each new/modified individual.
@@ -17,7 +17,7 @@ def evolve(pop: pd.DataFrame, p: float, elites: int, lb: int, ub: int, mut_count
     selected = select(pop, p)
     pairs = pair(selected, n - len(selected))
     breeded = breed(pairs, selected)
-    mutated = mutate(breeded, elites, lb, ub, mut_count)
+    mutated = mutate(breeded, mut_perc, lb, ub, mut_count)
     next_gen = cost_iter(mutated)
     assert(len(next_gen) == n)
     return next_gen

@@ -21,12 +21,12 @@ def config() -> configparser.ConfigParser:
 
     # TODO document this
     __config["DEFAULT"] = {
-        "pop_size": 10,
-        "sol_lb": -3,
-        "sol_ub": 3,
-        "sel_perc": 50,
+        "pop_size": 30,
+        "sol_lb": -10,
+        "sol_ub": 10,
+        "sel_perc": 40,
+        "mut_perc": 10,
         "mut_n": 1,
-        "elites": 1,
         "indiv_l": 33,
         "max_iter": 150,
         "out_file": "sys.stdout",

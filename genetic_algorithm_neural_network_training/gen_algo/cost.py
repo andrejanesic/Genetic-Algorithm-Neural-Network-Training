@@ -33,5 +33,5 @@ def cost_iter(pop: pd.DataFrame) -> pd.DataFrame:
             continue
         l = pop.iloc[i, :-1].values.flatten().tolist()
         c = cost(l)
-        pop.iloc[i, -1] = c
+        pop.iloc[i]["Cost"] = c
     return pop
