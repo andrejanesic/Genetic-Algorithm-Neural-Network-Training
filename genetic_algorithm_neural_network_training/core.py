@@ -51,7 +51,7 @@ def main() -> None:
             avg_j = pop["Cost"].sum() / len(pop)
             iters = 1
             print(f"Config: {cfg} | Run: {run} | iter: {iters} | ", end="", file=sys.stdout)
-            remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run - 1)
+            remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run + 1)
             print("Min: %f, Avg: %f | T remaining: %.2fmin" % \
                   (min_j, avg_j, remaining_t), file=sys.stdout)
             last_t = time.time()
@@ -71,7 +71,7 @@ def main() -> None:
                 iters += 1
                 avg_j = pop["Cost"].sum() / len(pop)
                 print(f"Config: {cfg} | Run: {run} | iter: {iters} | ", end="", file=sys.stdout)
-                remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run - 1)
+                remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run + 1)
                 print("Min: %f, Avg: %f | T remaining: %.2fmin" % \
                     (min_j, avg_j, remaining_t), file=sys.stdout)
                 last_t = time.time()
@@ -88,4 +88,10 @@ def main() -> None:
             if run_out_file != sys.stdout and run_out_file != sys.stderr:
                 run_out_file.close()
                 print(f"Wrote results to file: {fname}")
+                fname = f"{out_file}.best.txt"
+                try:
+                    best_f = open(fname, "w")
+                    print("%s" % pop.iloc[0][:-1], file=best_f)
+                except:
+                    pass
     return 0
