@@ -92,6 +92,7 @@ def main() -> None:
                 try:
                     best_f = open(fname, "w")
                     print("%s" % pop.iloc[0][:-1], file=best_f)
+                    print(f"Wrote best individual to file: {fname}")
                 except:
                     pass
     return 0
