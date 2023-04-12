@@ -9,7 +9,7 @@ Setup & Commands
 With Docker (Recommended)
 +++++++++++++++++++++++++
 
-If you have access to Docker, it is recommended to run the program with its provided Dockerfile. Simply run ``./run [command]``, which will build and run the image. The command can be any of ``dev``, ``test``, ``build``. See the section below on what each command does.
+If you have access to Docker, it is recommended to run the program with its provided Dockerfile. Simply run ``./run``, which will build and run the image with the ``data`` command, creating sample data and printing output to ``data/out``.
 
 Make Commands & No-Docker Execution
 +++++++++++++++++++++++++++++++++++
@@ -21,6 +21,8 @@ The following Make commands are available. Use ``make (command)`` syntax on Linu
 - ``init``: Initializes the package by installing the required repositories.
 
 - ``dev``: Runs the program's main package.
+
+- ``data``: Runs the program's main package with the ``data/in`` configuration(s).
 
 - ``test``: Runs the test suite.
 
@@ -44,9 +46,44 @@ The program receives a set of configuration files. Each configuration file conta
 Arguments & Configuration
 +++++++++++++++++++++++++
 
-Each configuration file represents one "experiment". Configuration files are written as INI files, and should contain the following data:
+Each configuration file represents one "experiment". Configuration files are written as INI files, with one section ("algo"), with the following parameters:
 
-TODO
+..  code-block:: ini
+    :caption: Configuration file template.
+    :linenos:
+
+    [algo]
+    pop_size = 10 ; Population size
+    sol_lb = -10 ; Expected lower limit of the solution
+    sol_ub = 10 ; Expected upper limit of the solution
+    sel_perc = 50 ; Selection percentage of the population
+    mut_perc = 10 ; Percentage of the population to mutate
+    mut_n = 1 ; Number of mutations in each mutated individual
+    indiv_l = 33 ; Number of genes in individual
+    max_iter = 150 ; Maximum iterations
+    out_file = test-0 ; Name of the file to output results to, excluding extension
+    runs = 3 ; Number of runs for each test
+    random_seed = 123123123 ; Random seed
+
+
+If not specified, the algorithm will use the following configuration:
+
+..  code-block:: ini
+    :caption: Default configuration
+    :linenos:
+
+    [algo]
+    pop_size: 30
+    sol_lb: -5
+    sol_ub: 5
+    sel_perc: 50
+    mut_perc: 10
+    mut_n: 1
+    indiv_l: 33
+    max_iter: 150
+    out_file: sys.stdout
+    runs: 3
+    random_seed: 123_123_123
 
 Authors
 -------

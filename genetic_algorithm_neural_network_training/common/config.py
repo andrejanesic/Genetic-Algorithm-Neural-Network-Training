@@ -20,7 +20,6 @@ def config(config_src: Optional[str]) -> configparser.ConfigParser:
     __config = configparser.ConfigParser()
     __config.read(config_src)
 
-    # TODO document this
     __config["DEFAULT"] = {
         "pop_size": 30,
         "sol_lb": -5,

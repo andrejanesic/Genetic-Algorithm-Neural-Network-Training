@@ -52,7 +52,6 @@ def args() -> Args:
         action="append",
         nargs='+',
         required=False,
-        default=["config.ini"],
         dest="configs",
     )
     
@@ -69,6 +68,6 @@ def args() -> Args:
     parsed = parser.parse_args()
 
     __args = Args() \
-        .set_configs(parsed.configs) \
+        .set_configs(["default"] if not parsed.configs else parsed.configs[0]) \
         .set_cost_exe(parsed.cost_exe)
     return __args

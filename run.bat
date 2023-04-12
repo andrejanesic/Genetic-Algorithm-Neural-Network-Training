@@ -1,2 +1,2 @@
 docker build -t ga .
-docker run -it --rm --entrypoint /bin/bash ga make %1
+docker run -it -v %cd%/data/out:/mnt/data/out/ --rm --entrypoint /bin/bash ga make data

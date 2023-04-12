@@ -18,4 +18,8 @@ ARG ROOTDIR=/home/root/temp
 WORKDIR ${ROOTDIR}
 COPY genetic_algorithm_neural_network_training ${ROOTDIR}/genetic_algorithm_neural_network_training
 COPY tests ${ROOTDIR}/tests
+COPY data ${ROOTDIR}/data
+WORKDIR ${ROOTDIR}/data/in
+RUN python ./generate_configs.py
+WORKDIR ${ROOTDIR}
 ENTRYPOINT [ "bash", "make", "dev" ]
