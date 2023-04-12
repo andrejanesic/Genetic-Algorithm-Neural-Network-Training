@@ -88,7 +88,7 @@ def main() -> None:
             if run_out_file != sys.stdout and run_out_file != sys.stderr:
                 run_out_file.close()
                 print(f"Wrote results to file: {fname}")
-                fname = f"{out_file}.best.txt"
+                fname = f"{out_file}.run-{run}.best.txt"
                 best_f = open(fname, "w")
                 print(" ".join([ \
                     str(v) for v in \
