@@ -50,7 +50,7 @@ def main() -> None:
             min_j = winner.loc["Cost"]
             avg_j = pop["Cost"].sum() / len(pop)
             iters = 1
-            print(f"Config: {cfg} | Run: {run} | iter: {iters} | ", end="", file=sys.stdout)
+            print(f"Config: {cfg} | Run: {run} | Iter: {iters} | ", end="", file=sys.stdout)
             remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run + 1)
             print("Min: %f, Avg: %f | T remaining: %.2fmin" % \
                   (min_j, avg_j, remaining_t), file=sys.stdout)
@@ -70,7 +70,7 @@ def main() -> None:
                     winner = curr_winner
                 iters += 1
                 avg_j = pop["Cost"].sum() / len(pop)
-                print(f"Config: {cfg} | Run: {run} | iter: {iters} | ", end="", file=sys.stdout)
+                print(f"Config: {cfg} | Run: {run} | Iter: {iters} | ", end="", file=sys.stdout)
                 remaining_t = (time.time() - last_t) / 60 * (max_iter - iters) * (runs - run + 1)
                 print("Min: %f, Avg: %f | T remaining: %.2fmin" % \
                     (min_j, avg_j, remaining_t), file=sys.stdout)
@@ -89,10 +89,11 @@ def main() -> None:
                 run_out_file.close()
                 print(f"Wrote results to file: {fname}")
                 fname = f"{out_file}.best.txt"
-                try:
-                    best_f = open(fname, "w")
-                    print("%s" % pop.iloc[0][:-1], file=best_f)
-                    print(f"Wrote best individual to file: {fname}")
-                except:
-                    pass
+                best_f = open(fname, "w")
+                print(" ".join([ \
+                    str(v) for v in \
+                        pop.iloc[0, :-1].values.flatten().tolist() \
+                ]), end="", file=best_f)
+                print(f"Wrote best individual to file: {fname}")
+                best_f.close()
     return 0
